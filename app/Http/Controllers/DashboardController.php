@@ -9,7 +9,18 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function giveData(){
-        return view('dashboard')->with('user',Auth::user());
+        $user=Auth::user();
+        $data = [
+            'login'=>$user->login,
+            'full_name'=>$user->full_name,
+            'birthday'=>$user->birthday,
+            'email'=>$user->email,
+            'address'=>$user->address,
+            'city'=>$user->city,
+            'state'=>$user->state,
+            'country'=>$user->country,
+        ];
+        return view('dashboard')->with('data',$data);
     }
 
     public function verifyPage(){
